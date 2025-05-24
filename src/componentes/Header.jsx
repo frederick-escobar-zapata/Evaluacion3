@@ -1,6 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Header() {
+  const [activeSection, setActiveSection] = useState('inicio');
+
+  const handleScroll = () => {
+    const sections = ['inicio', 'sobre-nosotros', 'productos', 'preguntas-frecuentes', 'contacto'];
+    const offsets = sections.map((id) => {
+      const element = document.getElementById(id);
+      return element ? element.getBoundingClientRect().top : Infinity;
+    });
+
+    const activeIndex = offsets.findIndex((offset) => offset >= 0 && offset < window.innerHeight / 2);
+    if (activeIndex !== -1) {
+      setActiveSection(sections[activeIndex]);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const cerrar = () => {
     const navbarCollapse = document.getElementById('navbarNav');
     if (navbarCollapse.classList.contains('show')) {
@@ -28,25 +48,37 @@ function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <a className="nav-link active" href="#inicio" onClick={cerrar}>Inicio</a>
-            </li>
-            <div className="d-none d-lg-block" style={{ borderLeft: '2px solid blue', height: '1.5rem', margin: '10px auto 0' }}></div>
-            <li className="nav-item">
-              <a className="nav-link" href="#sobre-nosotros" onClick={cerrar}>Quienes Somos</a>
-            </li>
-            <div className="d-none d-lg-block" style={{ borderLeft: '2px solid blue', height: '1.5rem', margin: '10px auto 0' }}></div>
-            <li className="nav-item">
-              <a className="nav-link" href="#productos" onClick={cerrar}>Productos</a>
-            </li>
-            <div className="d-none d-lg-block" style={{ borderLeft: '2px solid blue', height: '1.5rem', margin: '10px auto 0' }}></div>
-            <li className="nav-item">
-              <a className="nav-link" href="#preguntas-frecuentes" onClick={cerrar}>Preguntas frecuentes</a>
-            </li>
-            <div className="d-none d-lg-block" style={{ borderLeft: '2px solid blue', height: '1.5rem', margin: '10px auto 0' }}></div>
-            <li className="nav-item">
-              <a className="nav-link" href="#contacto" onClick={cerrar}>Contacto</a>
-            </li>
+            {['inicio', 'sobre-nosotros', 'productos', 'preguntas-frecuentes', 'contacto'].map((section, index, array) => (
+              <React.Fragment key={section}>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    href={`#${section}`}
+                    onClick={cerrar}
+                    style={{
+                      fontWeight: activeSection === section ? 'bold' : 'normal',
+                      fontSize: activeSection === section ? '1.2rem' : '1rem',
+                    }}
+                  >
+                    {section === 'inicio' && 'Inicio'}
+                    {section === 'sobre-nosotros' && 'Quienes Somos'}
+                    {section === 'productos' && 'Productos'}
+                    {section === 'preguntas-frecuentes' && 'Preguntas frecuentes'}
+                    {section === 'contacto' && 'Contacto'}
+                  </a>
+                </li>
+                {index < array.length - 1 && (
+                  <div
+                    className="d-none d-lg-block"
+                    style={{
+                      borderLeft: '2px solid blue',
+                      height: '1.5rem',
+                      margin: '10px auto 0',
+                    }}
+                  ></div>
+                )}
+              </React.Fragment>
+            ))}
           </ul>
         </div>
       </div>

@@ -4,14 +4,15 @@ import Formulario from './Formulario'
 
 function Banner() {
   return (
-    <div className="container my-5" style={{ padding: 0 }}>
+    <div className="container-fluid my-5" style={{ padding: 0 }}>
       <div
         id="inicio"
         className="box"
         style={{
           minHeight: '100vh',
+          width: '100%',
           padding: '60px 20px',
-          background: '#f5f5f5',
+          background: '#e0e7ff',
           textAlign: 'center',
           borderRadius: '12px',
           //marginTop: '110px' // baja el primer container para que no se oculte el título
@@ -27,8 +28,9 @@ function Banner() {
         className="box"
         style={{
           minHeight: '100vh',
+          width: '100%',
           padding: '60px 20px',
-          background: '#fff',
+          background: '#adc0ff',
           textAlign: 'center',
           borderRadius: '12px',
           //marginTop: '110px' // baja las siguientes secciones también
@@ -42,8 +44,9 @@ function Banner() {
         className="box"
         style={{
           minHeight: '100vh',
+          width: '100%',
           padding: '60px 20px',
-          background: '#fff',
+          background: '#e0e7ff',
           textAlign: 'center',
           borderRadius: '12px',
           //marginTop: '110px' // baja las siguientes secciones también
@@ -58,8 +61,9 @@ function Banner() {
         className="box"
         style={{
           minHeight: '100vh',
+          width: '100%',
           padding: '60px 20px',
-          background: '#fff',
+          background: '#adc0ff',
           textAlign: 'center',
           borderRadius: '12px',
           //marginTop: '110px' // baja las siguientes secciones también
@@ -74,6 +78,7 @@ function Banner() {
         className="box"
         style={{
           minHeight: '100vh',
+          width: '100%',
           padding: '60px 20px',
           background: '#e0e7ff',
           textAlign: 'center',
