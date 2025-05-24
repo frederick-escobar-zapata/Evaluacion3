@@ -31,15 +31,19 @@ function Header() {
             <li className="nav-item">
               <a className="nav-link active" href="#inicio" onClick={cerrar}>Inicio</a>
             </li>
+            <div className="d-none d-lg-block" style={{ borderLeft: '2px solid blue', height: '1.5rem', margin: '10px auto 0' }}></div>
             <li className="nav-item">
               <a className="nav-link" href="#sobre-nosotros" onClick={cerrar}>Quienes Somos</a>
             </li>
+            <div className="d-none d-lg-block" style={{ borderLeft: '2px solid blue', height: '1.5rem', margin: '10px auto 0' }}></div>
             <li className="nav-item">
               <a className="nav-link" href="#productos" onClick={cerrar}>Productos</a>
             </li>
+            <div className="d-none d-lg-block" style={{ borderLeft: '2px solid blue', height: '1.5rem', margin: '10px auto 0' }}></div>
             <li className="nav-item">
               <a className="nav-link" href="#preguntas-frecuentes" onClick={cerrar}>Preguntas frecuentes</a>
             </li>
+            <div className="d-none d-lg-block" style={{ borderLeft: '2px solid blue', height: '1.5rem', margin: '10px auto 0' }}></div>
             <li className="nav-item">
               <a className="nav-link" href="#contacto" onClick={cerrar}>Contacto</a>
             </li>
