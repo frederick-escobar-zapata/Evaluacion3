@@ -1,11 +1,33 @@
 import React from 'react'
-import Carrusel from './Carrusel'
-import Formulario from './Formulario'
-import ApiSecciones from './ApiSecciones'
-import ApiPreguntas from './ApiPreguntas'
+import Carrusel from './Carrusel.jsx'
+import Formulario from './Formulario.jsx'
+import ApiSecciones from './ApiSecciones.jsx'
+import ApiPreguntas from './ApiPreguntas.jsx'
+import ApiProductos from './ApiProductos.jsx'
 
 
 function Banner() {
+  const slides = [
+    {
+      image: 'https://1.bp.blogspot.com/-zKX8CREi3QY/T2OMZgW3s6I/AAAAAAAAWzg/5sFH754c6sw/s1600/Los-mas-Hermosos-Paisajes-Naturales_04.jpg',
+      alt: 'Primera diapositiva',
+      title: 'Bienvenido a Antigüedades Sthandier',
+      description: 'Descubre nuestra colección única de antigüedades.',
+    },
+    {
+      image: 'https://i.pinimg.com/736x/c2/3c/1f/c23c1f5d86a5b28759bef7ffeef2a350.jpg',
+      alt: 'Segunda diapositiva',
+      title: 'Historia y autenticidad',
+      description: 'Cada pieza cuenta una historia única.',
+    },
+    {
+      image: 'https://th.bing.com/th/id/OIP._-4kglKMKFNaTWV1QAu2CwHaFj?cb=iwc2&w=1152&h=864&rs=1&pid=ImgDetMain',
+      alt: 'Tercera diapositiva',
+      title: 'Explora nuestra colección',
+      description: 'Encuentra la pieza perfecta para tu hogar.',
+    },
+  ];
+
   return (
     <div className="container-fluid my-5" style={{ padding: 0 }}>
       <div
@@ -23,7 +45,7 @@ function Banner() {
       >
         <h2>Bienvenido a Antigüedades Sthandier</h2>
 
-        <Carrusel />
+        <Carrusel slides={slides} />
         
       </div>
       <div
@@ -39,7 +61,7 @@ function Banner() {
         }}
       >
         <h2>Sobre Nosotros - Quiénes somos</h2>
-        <ApiSecciones section="sobre-nosotros" /> {/* Pasa el nombre de la sección */}
+        <ApiSecciones/> {/* Pasa el nombre de la sección */}
       </div>
       <div
         id="productos"
@@ -55,7 +77,7 @@ function Banner() {
         }}
       >
         <h2>Nuestros Productos </h2>
-        <p></p>
+        <ApiProductos/>
       </div>
 
       <div
@@ -71,7 +93,7 @@ function Banner() {
         }}
       >
         <h2>Preguntas frecuentes</h2>
-        <ApiPreguntas section="preguntas-frecuentes" /> {/* Pasa el nombre de la sección */}
+        <ApiPreguntas /> {/* Pasa el nombre de la sección */}
       </div>
 
       <div
@@ -87,8 +109,7 @@ function Banner() {
           marginTop: '110px' // baja la última sección
         }}
       >
-        <h2>Contactanos</h2>
-       
+        <h2>Contactanos</h2>       
         <Formulario />
       </div>
     </div>

@@ -1,32 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import {Box, Typography,CircularProgress} from '@mui/material';
+import {use, useEffect, useState} from 'react';
 
-function ApiSecciones({ section }) { // Recibe la sección como prop
-  const [data, setData] = useState(null); // Estado para almacenar los datos
-  const [loading, setLoading] = useState(true); // Estado para manejar la carga
-  const [error, setError] = useState(null); // Estado para manejar errores
-  const API_URL = `http://localhost/Evaluacion3/?section=${section}`; // URL de la API con el parámetro de sección
+const API_SERVICES = 'https://www.clinicatecnologica.cl/ipss/antiguedadesSthandier/api/v1/about-us/';
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(API_URL);
-        const text = await response.text(); // Obtén la respuesta como texto
-        
-        //console.log("Respuesta completa:", text); // Imprime la respuesta para depuración
-
-        const result = JSON.parse(text); // Intenta convertir el texto a JSON
-        setData(result.Informacion); // Guardar la propiedad "Informacion" en el estado
-      } catch (error) {
-        setError(error.message); // Guardar el mensaje de error en el estado
-      } finally {
-        setLoading(false); // Finalizar el estado de carga
-      }
-    };
-
-    fetchData();
-  }, [API_URL]); // Vuelve a ejecutar si cambia la URL
-
-  if (loading) {
+function ApiSecciones(){
+    
+    const [dataServices, setDataServices] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const headers = { Authorization: 'Bearer ipss.get' };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {                
+                const responseServices = await fetch('https://cors-anywhere.herokuapp.com/'+API_SERVICES, { headers });     
+                //console.log("URL de la API:", 'https://cors-anywhere.herokuapp.com/'+API_SERVICES); // Imprime la URL de la API para depuración           
+                if (!responseServices.ok ) {
+                    throw new Error('Error fetching data');                }                
+                const dataServices = await responseServices.json();
+                //console.log(dataServices);
+                setDataServices(dataServices);
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }
+    , []);
+    if (loading) {
     return <div>Cargando...</div>; // Mostrar mensaje de carga
   }
 
@@ -35,22 +37,54 @@ function ApiSecciones({ section }) { // Recibe la sección como prop
   }
 
   return (
-    <div className="container mt-3">
-      <div className="row">
-        {data && data.map((item) => (
-          <div key={item.id} className="col-md-3 col-sm-6 mb-4">
-            <div className="card h-100" >
-              <div className="card-body" style={{ display: 'flex', flexDirection: 'column', padding: '2px', maxHeight: '348px' }}> 
-                <h5 className="card-title" style={{ top: '0', fontSize: '14px' }}>{item.tipo}</h5> {/* Tamaño de letra ajustado */}
-                <p className="card-text" style={{ textAlign: 'justify', flexGrow: '1', overflow: 'hidden', marginBottom: '5px', fontSize: '14px' }}>{item.texto}</p> {/* Tamaño de letra ajustado */}
-                <a href="#" className="btn btn-link p-0" style={{ fontSize: '14px' }}>Seguir leyendo</a> {/* Tamaño de letra ajustado */}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            flexDirection: { xs: 'column', md: 'row' }, 
+            padding: 1, 
+            backgroundColor: '#f0f0f0', 
+            borderRadius: 2, 
+            boxShadow: 3, 
+            maxHeight: '60vh',
+          }}
+        >
+          <Box 
+            sx={{ 
+              flex: 1, 
+              padding: 1 
+            }}
+          >
+            <Typography variant="h6" gutterBottom>
+              Mision-Vision
+            </Typography>
+            <Typography variant="body1" paragraph sx={{ textAlign: 'justify' }}>
+              {dataServices.data}
+            </Typography>
+          </Box>
+          <Box 
+            sx={{ 
+              flex: 1, 
+              padding: 2, 
+              display: 'flex', 
+              justifyContent: 'center', 
+              alignItems: 'center' 
+            }}
+          >
+            <img 
+              src="src\Imagenes\Cristaleria\5.jpg" 
+              alt="Imagen representativa" 
+              style={{ maxHeight:'90%' ,maxWidth: '100%', borderRadius: '8px' }} 
+            />
+            <img 
+              src="src\Imagenes\Cristaleria\6.jpg" 
+              alt="Imagen representativa" 
+              style={{ maxHeight:'90%' ,maxWidth: '100%', borderRadius: '8px' }} 
+            />
+          </Box>
+        </Box>
+    
+    
   );
 }
-
 export default ApiSecciones;

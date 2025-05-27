@@ -10,7 +10,6 @@ import Footer from './componentes/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
-
   return (
     <>
       <Header />

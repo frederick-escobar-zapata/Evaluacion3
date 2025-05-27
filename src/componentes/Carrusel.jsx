@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-function Carrusel() {
+function Carrusel({ slides }) { // Recibe las diapositivas como prop
   return (
     <div
       id="mainCarousel"
@@ -15,49 +15,40 @@ function Carrusel() {
         boxShadow: '0 4px 24px rgba(0,0,0,0.15)'
       }}
     >
+      {/* Indicadores */}
       <div className="carousel-indicators">
-        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            type="button"
+            data-bs-target="#mainCarousel"
+            data-bs-slide-to={index}
+            className={index === 0 ? 'active' : ''}
+            aria-current={index === 0 ? 'true' : 'false'}
+            aria-label={`Slide ${index + 1}`}
+          ></button>
+        ))}
       </div>
+
+      {/* Diapositivas */}
       <div className="carousel-inner">
-        <div className="carousel-item active">
-          <img
-            src="https://th.bing.com/th/id/OIP.aQeuCWr4sS7umoItrhA6mQHaEy?rs=1&pid=ImgDetMain"
-            className="d-block w-100"
-            alt="Primera"
-            style={{ objectFit: 'cover', height: '300px', filter: 'brightness(0.85)' }}
-          />
-          <div className="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-            <h5 className="fw-bold">Primera Imagen</h5>
-            <p>Descripción de la primera imagen.</p>
+        {slides.map((slide, index) => (
+          <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+            <img
+              src={slide.image}
+              className="d-block w-100"
+              alt={slide.alt}
+              style={{ objectFit: 'cover', height: '300px', filter: 'brightness(0.85)' }}
+            />
+            <div className="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+              <h5 className="fw-bold">{slide.title}</h5>
+              <p>{slide.description}</p>
+            </div>
           </div>
-        </div>
-        <div className="carousel-item">
-          <img
-            src="https://2.bp.blogspot.com/-9JiPFc3n9Hw/U_ekBAgaiMI/AAAAAAACR5c/qa8cABmAnUM/s1600/arbol%2Bsolitario%2Ben%2Blos%2Bverdes%2Bprados.jpg"
-            className="d-block w-100"
-            alt="Segunda"
-            style={{ objectFit: 'cover', height: '300px', filter: 'brightness(0.85)' }}
-          />
-          <div className="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-            <h5 className="fw-bold">Segunda Imagen</h5>
-            <p>Descripción de la segunda imagen.</p>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <img
-            src="https://3.bp.blogspot.com/-DX9-ZpjN904/U_emMocc4uI/AAAAAAACR70/ll9TwkTijL4/s1600/saint-michael-church-brixen-1920x1200-wallpaper.jpg"
-            className="d-block w-100"
-            alt="Tercera"
-            style={{ objectFit: 'cover', height: '300px', filter: 'brightness(0.85)' }}
-          />
-          <div className="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-            <h5 className="fw-bold">Tercera Imagen</h5>
-            <p>Descripción de la tercera imagen.</p>
-          </div>
-        </div>
+        ))}
       </div>
+
+      {/* Controles de navegación */}
       <button className="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Anterior</span>
@@ -67,7 +58,7 @@ function Carrusel() {
         <span className="visually-hidden">Siguiente</span>
       </button>
     </div>
-  )
+  );
 }
 
-export default Carrusel
+export default Carrusel;
