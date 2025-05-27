@@ -4,6 +4,7 @@ import Formulario from './Formulario.jsx'
 import ApiSecciones from './ApiSecciones.jsx'
 import ApiPreguntas from './ApiPreguntas.jsx'
 import ApiProductos from './ApiProductos.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function Banner() {
