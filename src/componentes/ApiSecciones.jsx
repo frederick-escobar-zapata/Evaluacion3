@@ -1,5 +1,5 @@
-import {Box, Typography,CircularProgress} from '@mui/material';
-import {use, useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_SERVICES = 'https://www.clinicatecnologica.cl/ipss/antiguedadesSthandier/api/v1/about-us/';
 
@@ -37,54 +37,32 @@ function ApiSecciones(){
   }
 
   return (
-    
-        <Box 
-          sx={{ 
-            display: 'flex', 
-            flexDirection: { xs: 'column', md: 'row' }, 
-            padding: 1, 
-            backgroundColor: '#f0f0f0', 
-            borderRadius: 2, 
-            boxShadow: 3, 
-            maxHeight: '60vh',
-          }}
-        >
-          <Box 
-            sx={{ 
-              flex: 1, 
-              padding: 1 
-            }}
-          >
-            <Typography variant="h6" gutterBottom>
-              Mision-Vision
-            </Typography>
-            <Typography variant="body1" paragraph sx={{ textAlign: 'justify' }}>
-              {dataServices.data}
-            </Typography>
-          </Box>
-          <Box 
-            sx={{ 
-              flex: 1, 
-              padding: 2, 
-              display: 'flex', 
-              justifyContent: 'center', 
-              alignItems: 'center' 
-            }}
-          >
-            <img 
-              src="src\Imagenes\Cristaleria\5.jpg" 
-              alt="Imagen representativa" 
-              style={{ maxHeight:'90%' ,maxWidth: '100%', borderRadius: '8px' }} 
-            />
-            <img 
-              src="src\Imagenes\Cristaleria\6.jpg" 
-              alt="Imagen representativa" 
-              style={{ maxHeight:'90%' ,maxWidth: '100%', borderRadius: '8px' }} 
-            />
-          </Box>
-        </Box>
-    
-    
+    <div 
+      className="d-flex flex-column flex-md-row p-3 bg-light rounded shadow" 
+      style={{ maxHeight: '60vh' }}
+    >
+      <div className="flex-fill p-3">
+        <h6 className="mb-3">Mision-Vision</h6>
+        <p className="text-justify">
+          {dataServices.data}
+        </p>
+      </div>
+      <div className="flex-fill p-3 d-flex justify-content-center align-items-center">
+        <img 
+          src="src\Imagenes\Cristaleria\5.jpg" 
+          alt="Imagen representativa" 
+          className="img-fluid rounded me-2" 
+          style={{ maxHeight: '90%' }}
+        />
+        <img 
+          src="src\Imagenes\Cristaleria\6.jpg" 
+          alt="Imagen representativa" 
+          className="img-fluid rounded" 
+          style={{ maxHeight: '90%' }}
+        />
+      </div>
+    </div>
   );
 }
+
 export default ApiSecciones;

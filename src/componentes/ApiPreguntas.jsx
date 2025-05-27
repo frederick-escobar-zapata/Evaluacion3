@@ -1,5 +1,6 @@
-import {Box, Typography,CircularProgress} from '@mui/material';
+import React from 'react';
 import {use, useEffect, useState} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_FAQ = 'https://www.clinicatecnologica.cl/ipss/antiguedadesSthandier/api/v1/faq/';
 
