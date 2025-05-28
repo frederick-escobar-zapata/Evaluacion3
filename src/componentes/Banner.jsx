@@ -110,7 +110,7 @@ function Banner() {
           marginTop: '110px' // baja la última sección
         }}
       >
-        <h2>Contactanos</h2>       
+        <h2>Contáctanos</h2>       
         <Formulario />
       </div>
     </div>

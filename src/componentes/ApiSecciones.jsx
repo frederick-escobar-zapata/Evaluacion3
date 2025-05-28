@@ -38,27 +38,33 @@ function ApiSecciones(){
 
   return (
     <div 
-      className="d-flex flex-column flex-md-row p-3 bg-light rounded shadow" 
-      style={{ maxHeight: '60vh' }}
+      className="row p-3 bg-light rounded shadow" 
+      style={{ height: '80vh', overflow: 'hidden' }}
     >
-      <div className="flex-fill p-3">
-        <h6 className="mb-3">Mision-Vision</h6>
-        <p className="text-justify">
+      {/* Section for text from the API */}
+      <div className="col-12 col-md-6 p-3">
+        <h6 className="mb-3 text-center">Misión y Visión</h6>
+        <p className="text-justify" style={{ textAlign: 'justify' }}>
           {dataServices.data}
         </p>
       </div>
-      <div className="flex-fill p-3 d-flex justify-content-center align-items-center">
+
+      {/* Section for images */}
+      <div 
+        className="col-12 col-md-6 p-3 d-flex justify-content-center align-items-center" 
+        style={{ marginTop: '-50px' }}
+      >
         <img 
           src="src\Imagenes\Cristaleria\5.jpg" 
-          alt="Imagen representativa" 
+s          alt="Cristalería imagen 5 representativa" 
           className="img-fluid rounded me-2" 
-          style={{ maxHeight: '90%' }}
+          style={{ maxHeight: '60%', maxWidth: '45%' }}
         />
         <img 
           src="src\Imagenes\Cristaleria\6.jpg" 
-          alt="Imagen representativa" 
+          alt="Cristalería imagen 6 representativa" 
           className="img-fluid rounded" 
-          style={{ maxHeight: '90%' }}
+          style={{ maxHeight: '60%', maxWidth: '45%' }}
         />
       </div>
     </div>

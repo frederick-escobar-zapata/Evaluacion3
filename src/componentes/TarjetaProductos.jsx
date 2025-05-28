@@ -37,7 +37,7 @@ function TarjetaProductos({ producto }) {
             {producto.descripcion}
           </p>
           <button className="btn btn-primary" style={{ position: 'absolute', bottom: '-20px', right: '-20px' }} onClick={handleContact}>
-            Contactanos
+            Contáctanos
           </button>
         </div>
       </div>

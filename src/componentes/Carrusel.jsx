@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Carrusel({ slides }) { // Recibe las diapositivas como prop
+function Carrusel() {
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    const importImages = async () => {
+      const images = import.meta.glob('/src/imagenes/img/*.{jpg,png,jpeg}');
+      const slideData = Object.keys(images).map((path, index) => ({
+        image: path,
+        alt: `Imagen ${index + 1}`,
+        title: `Título ${index + 1}`,
+        description: `Descripción de la imagen ${index + 1}`
+      }));
+      setSlides(slideData);
+    };
+    importImages();
+  }, []);
+
   return (
     <div
       id="mainCarousel"
@@ -38,12 +54,11 @@ function Carrusel({ slides }) { // Recibe las diapositivas como prop
             <img
               src={slide.image}
               className="d-block w-100"
-              alt={slide.alt}
+              alt={`Imagen del carrusel ${index + 1}: ${slide.alt}`}
               style={{ objectFit: 'cover', height: '300px', filter: 'brightness(0.85)' }}
             />
             <div className="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-              <h5 className="fw-bold">{slide.title}</h5>
-              <p>{slide.description}</p>
+              
             </div>
           </div>
         ))}
